@@ -1,5 +1,5 @@
 from django.apps import AppConfig
 
 
-class RedsocialConfig(AppConfig):
+class RedSocialConfig(AppConfig):
     name = 'redSocial'
