@@ -1,1 +1,1 @@
-from django.urls import pathfrom . import viewsurlpatterns = [    path('',views.vistaPost, name='vistaPost'),    path('perfil/',views.perfil, name='perfil'),]
+from django.urls import pathfrom . import viewsurlpatterns = [    path('',views.vistaPost, name='vistaPost'),    path('perfil/',views.vistaPerfil, name='perfil'),]
