@@ -1,54 +1,18 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Django Social</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href='http://fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
-	<link rel="stylesheet" type="text/css" href="../static/normalize.css">
-	<link rel="stylesheet" type="text/css" href="../static/style.css">
-</head>
-<body>
+{% extends 'base.html' %}
+{% load humanize %}
+{% block content %}
 
-	<header class="main-head">
-		<nav class="main">
-			<h1 id="logo"> <img src="static/Logo1.jpeg" width="110" height="60"></h1>
-			<ul>
-				<li><a href="#">Logout</a></li>
-				<li><a href="#">Register</a></li>
-				<li><a href="#">Login</a></li>
-			</ul>
-		</nav>
-	</header>
-
-	<!-------------------------------------
-					Messages 
-	-------------------------------------->
-
-	<!-------------------------------------
-					Navigation Bar 
-	-------------------------------------->
-	<div class="main">
-		
-		<nav class="second-nav">
-			<a class="vistaPost" href="#">Inicio</a>
-			<a class="perfil" href="#">Mi Perfil</a>
-			<a class="new" href="#">Crear nuevo post</a>
-		</nav>
-
-
-		{% block content %}
-
-		{% endblock content %}
-
-
-
-	</div>
-
-	<footer>
-		<div class="row">
-			<p>Red Social con Django<br>hecha por: Juan Camilo Clavijo Dominguez</a></p>
-		</div>
-	</footer>
-
-</body>
-</html>
+{% for post in posts %}
+<article>
+    <div class="container-article">
+        <img src="{{ post.usuario.perfil.imagen.url }}">
+        <div>
+            <h2 class="username"><a href="#">@{{ post.usuario.username }}</a></h2>
+            <i class="Hora"></i>
+            <time data-time="#">{{ post.timestamp|naturaltime}}</time>
+            <div class="post">{{ post.contenido }}</div>
+        </div>
+    </div>
+</article>
+{% endfor %}
+{% endblock %}
