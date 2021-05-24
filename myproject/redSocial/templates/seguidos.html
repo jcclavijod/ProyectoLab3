@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% for relationship in seguidos %}
+{% if relationship.from_user == request.user %}
+<article>
+    <div class="container-article">
+        <img src="{{ relationship.to_user.perfil.imagen.url }}">
+        <div>
+            <h2 class="username"><a href="{% url 'perfil' relationship.to_user.username %}">@{{ relationship.to_user.username }}</a></h2>
+        </div>
+    </div>
+</article>
+{% endif %}
+{% endfor %}
+{% endblock %}
