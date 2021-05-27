@@ -1,6 +1,12 @@
 {% extends 'base.html' %}
 {% block content %}
 
+{% if request.user.perfil.following.count == 0 %}
+<h1><center>No sigues a nadie</center></h1>
+{% else %}
+<h1><center>seguidos:</center></h1>
+{% endif %}
+
 {% for relationship in seguidos %}
 {% if relationship.from_user == request.user %}
 <article>

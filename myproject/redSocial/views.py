@@ -37,10 +37,23 @@ def unfollow(request, username):
     return redirect('paginaInicio')
 
 
-def vistaSeguidos(request):
+def vistaSeguidos(request,username=None):
+    current_usuario = request.user
+    if username and username != current_usuario.username:
+        usuario = User.objects.get(username=username)
+    else:
+        usuario = current_usuario
     seguidos = Relationship.objects.all()
-    context = {'seguidos': seguidos}
-    return render(request, 'seguidos.html', context)
+    return render(request, 'seguidos.html', {'usuario':usuario, 'seguidos': seguidos})
+
+def vistaSeguidores(request,username=None):
+    current_usuario = request.user
+    if username and username != current_usuario.username:
+        usuario = User.objects.get(username=username)
+    else:
+        usuario = current_usuario
+    seguidores = Relationship.objects.all()
+    return render(request, 'seguidores.html',  {'usuario':usuario, 'seguidos': seguidores})
 
 def vistaPaginaInicio(request):
     posts = Post.objects.all()

@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% block content %}
+
+{% if request.user.perfil.followers.count == 0 %}
+<h1><center>No tienes seguidores</center></h1>
+{% else %}
+<h1><center>seguidores:</center></h1>
+{% endif %}
+
+{% for relationship in seguidores %}
+{% if relationship.to_user == usuario %}
+<article>
+    <div class="container-article">
+        <img src="{{ relationship.from_user.perfil.imagen.url }}">
+        <div>
+            <h2 class="username"><a href="{% url 'perfil' relationship.from_user.username %}">@{{ relationship.from_user.username }}</a></h2>
+        </div>
+    </div>
+</article>
+{% endif %}
+{% endfor %}
+{{block.super}}
+{% endblock %}

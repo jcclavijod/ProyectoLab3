@@ -21,7 +21,7 @@ class Perfil(models.Model):
     def followers(self):
         user_ids = Relationship.objects.filter(to_user=self.usuario)\
                                                         .values_list('from_user_id', flat=True)
-        return User.objects.filter(id_in=user_ids)
+        return User.objects.filter(id__in=user_ids)
 
 class Post(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='posts')
@@ -44,4 +44,4 @@ class Relationship(models.Model):
     class Meta:
         indexes = [
             models.Index(fields=['from_user', 'to_user',]),
-            ]
+        ]

@@ -8,6 +8,7 @@ urlpatterns = [
     path('',views.vistaPaginaInicio, name='paginaInicio'),
     path('perfil/',views.vistaPerfil, name='perfil'),
     path('seguidos/',views.vistaSeguidos, name='seguidos'),
+    path('seguidores/',views.vistaSeguidores, name='seguidores'),
     path('perfil/<str:username>/', views.vistaPerfil, name='perfil'),
     path('registro/',views.registro, name='registro'),
     path('login/',LoginView.as_view(template_name='login.html'), name='login'),

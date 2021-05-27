@@ -1,7 +1,6 @@
 {% extends 'paginaInicio.html' %}
 {% block content %}
 
-<!-- Profile -->
 <div class="profile">
 	<img src="{{ usuario.perfil.imagen.url }}">
 	<h2>@{{usuario.username}}</h2>
@@ -17,8 +16,38 @@
 </div>
 
 <div class="follow">
-	<h5>Post  {{ usuario.posts.count }}</h5>
-	<h5><a href="{% url 'seguidos' %}">Siguiendo  {{ usuario.perfil.following.count }}</a></h5>
+	{% if usuario != request.user %}
+	<div>
+		<h5>Post</h5>
+		<p>{{ usuario.posts.count}}</p>
+	</div>
+	<div>
+		<h5>Seguidores</h5>
+		<p>{{ usuario.perfil.followers.count }}</p>
+
+	</div>
+	<div>
+		<h5>Siguiendo</h5>
+		<p>{{ usuario.perfil.following.count }}</p>
+	</div>
+	{% else %}
+
+		<div>
+		<h5>Post</h5>
+		<p>{{ usuario.posts.count}}</p>
+	</div>
+	<div>
+		<h5><a href="{% url 'seguidores' %}">Seguidores</a></h5>
+		<p>{{ usuario.perfil.followers.count }}</p>
+
+	</div>
+	<div>
+		<h5><a href="{% url 'seguidos' %}">Siguiendo</a></h5>
+		<p>{{ usuario.perfil.following.count }}</p>
+	</div>
+	{% endif %}
+
+
 </div>
 
 {{block.super}}
